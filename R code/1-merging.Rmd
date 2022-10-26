@@ -1,0 +1,440 @@
+---
+title: "Article merging"
+author: ""
+date: "Last Updated: 10/19/2022"
+output: pdf_document
+knit: (function(inputFile, encoding) {
+      out_dir <- "../Reports";
+      rmarkdown::render(inputFile,
+                        encoding=encoding,
+                        output_dir=file.path(dirname(inputFile), out_dir))})
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, clean = TRUE)
+```
+
+```{r}
+# Plotting and data manipulation packages.
+library(ggplot2)
+library(tidyverse)
+library(kableExtra)
+library(ggsci)
+```
+
+```{r}
+# Read in data from PubMed and Web of Science.
+pubmed <- read.csv("../Data/pubmed20220414.csv")
+webofscience <- read.csv("../Data/webofscience20220414.csv")
+```
+
+We extracted articles from PubMed and Web of Science published in the following journals/conferences:
+
+-   Journal of American Medical Informatics Association (JAMIA)
+-   JAMIA Open
+-   Journal of Biomedical Informatics (JBI)
+-   PloS One
+-   Proceedings of the Annual American Medical Informatics Association Symposium (AMIA)
+
+The data of our most recent query was April 14, 2022.
+
+```{r}
+# Number of articles returned from the two databases.
+n_wos <- nrow(webofscience)
+n_pub <- nrow(pubmed)
+
+data.frame(Source = c("PubMed", "Web of Science", "Total"), 
+           n = c(n_pub, n_wos, n_pub + n_wos)) %>%
+  kbl(booktabs = T, caption = "Number of articles extracted by initial query") %>%
+  kable_paper("striped") %>%
+  kable_styling(position = "center", latex_options = "HOLD_position")
+```
+
+# Merging procedure
+
+We next detail the key steps of merging the articles from the two databases.
+
+## 1. Resolve publication time conflict in AMIA articles extracted by PubMed  
+
+We noticed that there were a large number of AMIA articles extracted by PubMed in 2018 relative to the other years.
+
+```{r}
+# Number of AMIA articles extracted by PubMed, by year.
+pubmed %>%
+  filter(Journal.Book == "AMIA Annu Symp Proc") %>%
+  group_by(Publication.Year) %>%
+  summarise(n = n()) %>%
+  kbl(booktabs = T, caption = "Number of AMIA articles extracted by PubMed") %>%
+  kable_paper("striped") %>%
+  kable_styling(position = "center", latex_options = "HOLD_position")
+```
+
+We copied and pasted the titles in Google Scholar and found that there may be a gap between acceptance date and publication date of AMIA articles. PubMed often extracts AMIA articles using the acceptance date and records the acceptance data as the publication date. We checked the [AMIA PubMed journal list](https://www.ncbi.nlm.nih.gov/pmc/issues/380401/) and validated our assumptions. This time conflict does not occur in Web of Science.  
+
+In order to merge the results from two databases, we manually searched the titles in Google Scholar and corrected the year of publication for these AMIA articles (in `amia20220414.csv`).  We then removed all AMIA articles accepted in 2017. Note that due to the date of our query we did not capture AMIA articles from 2022.
+
+```{r}
+# Publication dates for AMIA papers.
+amia_date <- read.csv("../Data/amia20220414.csv")
+
+# Remove articles with mismatched acceptance and publication date.
+pubmed_original <- merge(pubmed, amia_date, by = "PMID", all.x = T, all.y = F)
+pubmed <- pubmed_original %>% 
+  mutate(Publication.Year.x = case_when(
+    !is.na(Publication.Year.y) ~ as.numeric(Publication.Year.y),
+    TRUE ~ as.numeric(Publication.Year.x)
+  )) %>%
+  select(PMID | ends_with(".x")) 
+
+colnames(pubmed) <- colnames(pubmed) %>%
+  gsub(".x", "", .)
+
+# Summarize publication dates by year.
+pubmed %>%
+  filter(Journal.Book == "AMIA Annu Symp Proc") %>%
+  group_by(Publication.Year) %>%
+  summarise(n = n()) %>%
+  kbl(booktabs = T, caption = "Number of AMIA articles extracted by PubMed (we will remove all articles in 2017)") %>%
+  kable_paper("striped") %>%
+  kable_styling(position = "center", latex_options = "HOLD_position")
+
+pubmed <- pubmed %>%
+  filter(Publication.Year != 2017)
+```
+
+## 2. Correct errors in record information in Web of Science
+
+The article ["Extraction of Active Medications and Adherence Using Natural Language Processing for Glaucoma Patients"](https://pubmed.ncbi.nlm.nih.gov/35308943/) published in AMIA is recorded as being published in "OHSU Digital Commons". We manually changed it to "AMIA" in the next section when merging.
+
+```{r, eval = F}
+webofscience %>%
+  group_by(Source.Title) %>%
+  filter(Source.Title == "OHSU Digital Commons") 
+```
+
+Two articles extracted by Web of Science did not have a PMID, ["Sleep apnea phenotyping and relationship to disease in a large clinical biobank"](https://pubmed.ncbi.nlm.nih.gov/35156000/) and ["Generating real-world data from health records: design of a patient-centric study in multiple sclerosis using a commercial health records platform"](https://pubmed.ncbi.nlm.nih.gov/35155999/). We added PMIDs for them manually. 
+
+```{r}
+webofscience <- webofscience %>%
+  mutate(pmid = case_when(Article.Title == "Generating real-world data from health records: design of a patient-centric study in multiple sclerosis using a commercial health records platform" ~ 35155999,
+                          Article.Title == "Sleep apnea phenotyping and relationship to disease in a large clinical biobank" ~ 35156000, 
+                          TRUE ~ as.numeric(Pubmed.Id))) 
+```
+
+We also removed duplicate articles extracted by Web of Science.
+
+```{r}
+webofscience <- webofscience %>% 
+  select(Article.Title, Source.Title, Authors, Publication.Year, Abstract, pmid) %>%
+  distinct(pmid, .keep_all = TRUE)
+```
+
+## 3. Merge articles from the two databases
+
+We follow the following steps to merge articles from PubMed and Web of Sciences. The implementation details and codes can be found in the original R markdown file with the same file name.
+
+-  Select only title, journal/conference name, author, year, abstract (note: not extracted by PubMed), and PMID.
+
+```{r}
+webofscience <- webofscience %>% 
+  select(Article.Title, Source.Title, Authors, Publication.Year, Abstract, pmid)
+```
+
+```{r}
+pubmed <- pubmed %>%
+  select(Title, Journal.Book, Authors, Publication.Year, PMID)
+```
+
+-  Rename the column names.
+
+```{r}
+colnames(webofscience) <- c("Title", "JournalorConference", "Authors", "Year",  "Abstract", "PMID")
+colnames(pubmed) <- c("Title", "JournalorConference", "Authors", "Year", "PMID")
+```
+
+-  Unify the name of publications. 
+
+```{r}
+webofscience <- webofscience %>%
+  mutate(JournalorConference = case_when(
+    JournalorConference == "PloS one" | JournalorConference == "PLOS ONE" ~ "PLoS One",
+    JournalorConference == "JOURNAL OF THE AMERICAN MEDICAL INFORMATICS ASSOCIATION" ~ "J Am Med Inform Assoc",
+    JournalorConference == "JAMIA OPEN" ~ "JAMIA Open",
+    JournalorConference == "JAMIA open" ~ "JAMIA Open",
+    JournalorConference == "JOURNAL OF BIOMEDICAL INFORMATICS" | JournalorConference == "Journal of biomedical informatics" ~ "J Biomed Inform",
+    JournalorConference == "AMIA ... Annual Symposium proceedings. AMIA Symposium" ~ "AMIA",
+    JournalorConference == "AMIA Annu Symp Proc" ~ "AMIA",
+    JournalorConference == "OHSU Digital Commons" ~ "AMIA",
+    TRUE ~ JournalorConference
+  ))
+  
+pubmed <- pubmed %>%
+  mutate(JournalorConference = case_when(
+    JournalorConference == "PloS one" | JournalorConference == "PLOS ONE" ~ "PLoS One",
+    JournalorConference == "JOURNAL OF THE AMERICAN MEDICAL INFORMATICS ASSOCIATION" ~ "J Am Med Inform Assoc",
+    JournalorConference == "JAMIA Open" ~ "JAMIA Open",
+    JournalorConference == "JOURNAL OF BIOMEDICAL INFORMATICS" | JournalorConference == "Journal of biomedical informatics" ~ "J Biomed Inform",
+    JournalorConference == "J Biomed Inform" ~ "J Biomed Inform",
+    JournalorConference == "AMIA ... Annual Symposium proceedings. AMIA Symposium" ~ "AMIA",
+    JournalorConference == "AMIA Annu Symp Proc" ~ "AMIA",
+    TRUE ~ JournalorConference
+  ))
+```
+
+- Merge and unify the columns.
+
+```{r}
+merged_dat <- merge(pubmed, webofscience, by = "PMID", all.x = T, all.y = T)
+```
+
+```{r}
+merged_dat$Title.x[is.na(merged_dat$Title.x)] <- merged_dat$Title.y[is.na(merged_dat$Title.x)]
+merged_dat$JournalorConference.x[is.na(merged_dat$JournalorConference.x)] <- merged_dat$JournalorConference.y[is.na(merged_dat$JournalorConference.x)]
+merged_dat$Authors.x[is.na(merged_dat$Authors.x)] <- merged_dat$Authors.y[is.na(merged_dat$Authors.x)]
+merged_dat$Year.x[is.na(merged_dat$Year.x)] <- merged_dat$Year.y[is.na(merged_dat$Year.x)]
+```
+
+```{r, eval = F}
+# Check if publication dates are consistent across the two journals.
+merged_dat %>%
+  filter(!is.na(Year.y)) %>%
+  mutate(equal_year = Year.x - Year.y) %>%
+  group_by(equal_year) %>%
+  filter(equal_year == 1)
+```
+
+```{r}
+# We checked Google Scholar to verify the publication dates for these records and manually corrected this.
+merged_dat[which(merged_dat$PMID == 34405866), "Year.x"] <- 2022
+merged_dat[which(merged_dat$PMID == 34559880), "Year.x"] <- 2022
+merged_dat[which(merged_dat$PMID == 34962283), "Year.x"] <- 2021
+```
+
+```{r}
+merged_dat <- merged_dat %>%
+  select(Title.x, JournalorConference.x, Authors.x, Year.x, Abstract, PMID)
+
+colnames(merged_dat) <- c("Title", "JournalorConference", "Authors", "Year",  "Abstract", "PMID")
+```
+
+-  Identify if the source is web of science or pubmed. 
+
+```{r}
+web_id <- webofscience$PMID
+pub_id <- pubmed$PMID
+
+merged_dat$web_flag <- 0
+merged_dat$pub_flag <- 0
+merged_dat$web_flag[merged_dat$PMID %in% web_id] <- 1
+merged_dat$pub_flag[merged_dat$PMID %in% pub_id] <- 1
+```
+
+```{r}
+merged_dat <- merged_dat %>% 
+  mutate(Source = case_when(
+    web_flag == 1 & pub_flag == 1 ~ "Both",
+    web_flag == 0 & pub_flag == 1 ~ "PubMed",
+    web_flag == 1 & pub_flag == 0 ~ "WoS"
+  ))
+```
+
+-  Duplicates check. Within the duplicates, we found two papers with their correction, see below. We removed papers with PMID 32817711 and 35311903. 
+
+```{r, eval = F}
+cat("number of duplicates", nrow(pubmed) + nrow(webofscience) - nrow(merged_dat))
+```
+
+```{r}
+merged_dat %>% 
+  filter(PMID %in% c(32614911, 32817711, 34505903, 35311903)) %>%
+  select(PMID, Source, Title) %>%
+  kbl(booktabs = T, caption = "The article with its correction identified by both of the database queries. ") %>%
+  kable_paper("striped") %>%
+  kable_styling(position = "center", latex_options = c("scale_down", "hold_position")) %>%
+  column_spec(3, width = "37em")
+
+merged_dat <- merged_dat %>%
+  filter(PMID != 32817711) %>%
+  filter(PMID != 35311903)
+```
+
+## 4. Merging results
+
+We summarize the merged data containing the extracted articles from the two databases after removing AMIA articles with the incorrect publication date, duplicated articles, and article corrections described in the previous section.
+
+```{r}
+final_dat <- merged_dat
+```
+
+```{r}
+# Number of artciles from each database.
+final_dat %>%
+  group_by(Source) %>%
+  summarise(n = n()) %>%
+  add_row(Source = "Total", n = nrow(final_dat)) %>%
+  kbl(booktabs = T, caption = "Number of articles extracted by each database") %>%
+  kable_paper("striped") %>%
+  kable_styling(position = "center", latex_options = "HOLD_position")
+```
+
+# Analysis
+
+## Compare articles identified by Web of Science and PubMed
+
+```{r, fig.height=4, fig.cap = "Number of articles across journals and years before merging. (a) number of articles extracted from PubMed. (b) Number of articles extracted from Web of Science. "}
+g1 <- webofscience %>%
+  group_by(Year, JournalorConference) %>%
+  summarise(count = n()) %>%
+  ggplot() +
+  geom_bar(aes(x = factor(Year), y = count, fill = JournalorConference),
+           stat = "identity", position = position_stack(reverse = TRUE)) + 
+  theme_classic() +
+  theme(axis.title.x = element_blank()) +
+  scale_fill_viridis_d(begin = 0.1, end = 0.8) +
+  ylab("Number of publications (WOS)") + 
+  ggtitle("(a)") +
+  guides(fill = guide_legend(""))
+
+g2 <- pubmed %>%
+  group_by(Year, JournalorConference) %>%
+  summarise(count = n()) %>%
+  ggplot() +
+  geom_bar(aes(x = factor(Year), y = count, fill = JournalorConference),
+           stat = "identity", position = position_stack(reverse = TRUE)) + 
+  theme_classic() +
+  theme(axis.title.x = element_blank()) +
+  scale_fill_viridis_d(begin = 0.1, end = 0.8) +
+  ylab("Number of publications (PubMed)") + 
+  ggtitle("(b)") +
+  guides(fill = guide_legend(""))
+
+ggpubr::ggarrange(g2, g1, ncol = 2, 
+                  legend = c("bottom"), common.legend = TRUE)
+```
+Figure 1 indicates publications increased over years. Web of Science generally identified more articles than PubMed for JAMIA and JBI articles, while PubMed identified more PloS One articles.  This indicates distinct articles are captured by both databases and explains why we queried both databases.
+
+```{r, fig.height=3.2, fig.cap = "Number of articles stratified by journal across journals after merging. "}
+final_dat %>%
+  group_by(JournalorConference, Source) %>%
+  summarise(n = n()) %>% 
+  ggplot(aes(x = factor(JournalorConference), y = n, fill = Source)) +
+  geom_bar(stat = "identity", position = position_stack(reverse = TRUE)) + 
+  geom_text(aes(label = n), size = 2, color = "white", position = position_stack(reverse = TRUE, vjust = 0.5)) + 
+  theme_classic() +
+  theme(legend.position = "bottom", axis.title.x = element_blank()) +
+  scale_fill_viridis_d(begin = 0.1, end = 0.8) +
+  ylab("Number of publications") + 
+  guides(fill = guide_legend(""))
+```
+
+
+```{r, fig.height=3.2, fig.cap = "Number of articles stratified by year across years after merging. "}
+final_dat %>%
+  group_by(Year, Source) %>%
+  summarise(count = n()) %>%
+  ggplot(aes(x = factor(Year), y = count, fill = Source)) +
+  geom_bar(stat = "identity", position = position_stack(reverse = TRUE)) +
+  geom_text(aes(label = count), size = 2, color = "white", position = position_stack(reverse = TRUE, vjust = 0.5)) + 
+  theme_classic() +
+  theme(legend.position = "bottom", axis.title.x = element_blank()) +
+  scale_fill_viridis_d(begin = 0.1, end = 0.8) +
+  xlab("Years") +
+  ylab("Number of publications") + 
+  guides(fill = guide_legend(""))
+```
+
+
+
+Figures 2 and 3 summarize the number of articles across journals after merging, stratified by journal and year, respectively.  From Figure 2, we see most of the articles were identified from both databases, with Web of Science generally capturing more articles in JAMIA and JBI while PubMed capturing more for PloS One.  Figure 3 indicates that most of the articles are identified from both databases while PubMed identified more than Web of Science over the years.
+
+
+\newpage
+
+## Compare articles across years
+
+Figure 4 shows that the number of articles across years after merging. The number of publications increases over years.
+
+JAMIA and JAMIA Open articles, together with a total number of 301 articles published during the four years, are identified the most. PloS One published the second most articles, with a total of 253 articles. JBI published slightly less. AMIA captured fewest articles and the number of publications is not monotonically increasing, this might suggest that not all relevant articles from the two sources are well-indexed by PubMed and Web of Science.
+
+```{r, fig.height=4, fig.cap = "Number of articles across years after merging, stratified by the journal or conference "}
+final_dat %>%
+  group_by(Year, JournalorConference) %>%
+  summarise(count = n()) %>%
+  ggplot(aes(x = factor(Year), y = count, fill = JournalorConference)) +
+  geom_bar(stat = "identity", position = position_stack(reverse = TRUE)) +
+  geom_text(aes(label = count), size = 2, color = "white", position = position_stack(reverse = TRUE, vjust = 0.5)) + 
+  theme_classic() +
+  theme(legend.position = "bottom", axis.title.x = element_blank()) +
+  scale_fill_viridis_d(begin = 0.1, end = 0.8) +
+  ylab("Number of publications") + 
+  guides(fill = guide_legend(""))
+```
+
+
+## Summary 
+
+-   510 (60.0%) articles are captured by both of the databases, PubMed captured additional 205 articles (24.1%) and WoS captured additional 135 (15.9%) (see Table 5). We also benefit from using the two different queries as they both captured additional articles.
+
+-   PubMed generally identified more PLoS One articles than Web of Science.
+
+-   Most articles are from JAMIA and PloS One. 
+
+We saved the list of articles after merging in the csv format, with the name \`merged_20220414.csv\`. This file was used for manual screening of  articles to identify those that are relevant for our review. 
+
+```{r}
+write.csv(final_dat, "../Data/merged20220414.csv", row.names = FALSE)
+```
+
+# Appendix
+
+```{r}
+journal_wos <- webofscience %>%
+  group_by(JournalorConference) %>%
+  summarise(wos = n()) 
+
+journal_pubmed <- pubmed %>%
+  group_by(JournalorConference) %>%
+  summarise(pubmed = n()) 
+
+merge(journal_wos, journal_pubmed, by = "JournalorConference") %>%
+  add_row(JournalorConference = "Total", pubmed = nrow(pubmed), wos = nrow(webofscience)) %>%
+  kbl(booktabs = T, caption = "Number of articles stratified by journals before merging. ") %>%
+  kable_paper("striped") %>%
+  kable_styling(position = "center", latex_options = "HOLD_position")
+```
+
+```{r}
+year_wos <- webofscience %>%
+  group_by(Year) %>%
+  summarise(wos = n()) 
+
+year_pubmed <- pubmed %>%
+  group_by(Year) %>%
+  summarise(pubmed = n()) 
+
+merge(year_wos, year_pubmed, by = "Year") %>%
+  mutate(Year = factor(Year)) %>%
+  add_row(Year = "Total", pubmed = nrow(pubmed), wos = nrow(webofscience)) %>%
+  kbl(booktabs = T, caption = "Number of articles stratified by years before merging. ") %>%
+  kable_paper("striped") %>%
+  kable_styling(position = "center", latex_options = "HOLD_position")
+```
+
+```{r}
+final_dat %>%
+  group_by(JournalorConference) %>%
+  summarise(n = n()) %>%
+  add_row(JournalorConference = "Total", n = nrow(final_dat)) %>%
+  kbl(booktabs = T, caption = "Number of articles by journal/conference after merging. ") %>%
+  kable_paper("striped") %>%
+  kable_styling(position = "center", latex_options = "HOLD_position")
+
+final_dat %>%
+  group_by(Year) %>%
+  summarise(n = n()) %>%
+  mutate(Year = factor(Year)) %>%
+  add_row(Year = "Total", n = nrow(final_dat)) %>%
+  kbl(booktabs = T, caption = "Number of articles across years after merging.") %>%
+  kable_paper("striped") %>%
+  kable_styling(position = "center", latex_options = "HOLD_position")
+```

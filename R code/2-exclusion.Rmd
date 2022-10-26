@@ -1,0 +1,89 @@
+---
+title: "Article exclusion"
+author: " "
+date: "Last Updated: 10/19/2022"
+output: pdf_document
+knit: (function(inputFile, encoding) {
+      out_dir <- "../Reports";
+      rmarkdown::render(inputFile,
+                        encoding=encoding,
+                        output_dir=file.path(dirname(inputFile), out_dir))})
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(kableExtra)
+```
+
+```{r}
+df <- read.csv("../Data/annotations050822.csv", skip = 1)
+df <- df %>% filter(PMID != "") # Remove empty row.
+```
+
+After merging articles from PubMed and Web of Sciences (see `1-merging.rmd`), there are 850 papers.  
+
+```{r}
+init <- df %>% 
+  group_by(Source) %>%
+  summarise(n = n()) 
+
+init <- init %>%
+  add_row(Source = "Total", n = sum(init$n)) 
+
+init %>%
+  kbl(booktabs = T, caption = "Number of papers included after merging papers from two database") %>%
+  kable_paper("striped") %>%
+  kable_styling(position = "center", latex_options = "HOLD_position")
+```
+
+We annotated articles in the `annotations050822.csv` file. The analysis consists of 2 steps:
+
+- **Title and abstract screening**: Exclude the papers that were reviews/perspectives/editorials, did not use EHR data as the primary data source, did not consider phenotyping, and/or did not use machine learning (ML). 
+- **Full-text review**: For articles that passed the title and abstract screening, either (i) exclude the article as it meets the exclusion criteria listed above or (ii) include the article and annotate relevant data.
+
+
+```{r}
+## Step 1: Title and abstract screening
+step1 <- df %>%
+  group_by(Primary_reason_for_exclusion_TA_SY) %>%
+  summarise(n = n()) %>%
+  filter(Primary_reason_for_exclusion_TA_SY != "")
+
+colnames(step1) <- c("Primary reason for exclusion", "N") 
+```
+
+```{r}
+## Step 2: Full-text review. 
+step2 <- df %>%
+  filter(Include_FR_SY == 0) %>%
+  group_by(Primary_reason_for_exclusion_FR_SY) %>%
+  summarise(n = n()) 
+
+colnames(step2) <- c("Primary reason for exclusion", "N") 
+```
+
+```{r}
+exclusion <- merge(step1, step2, by = "Primary reason for exclusion", all = TRUE)
+colnames(exclusion) <- c("Primary reason for exclusion", "Title and abstract review", "Full-text review")
+
+# Replace NA with 0.
+exclusion$`Full-text review` <- exclusion$`Full-text review` %>% replace_na(0)
+
+exclusion <- exclusion %>%
+  mutate(Total = `Title and abstract review` + `Full-text review`) 
+
+exclusion %>%
+  add_row(`Primary reason for exclusion` = "Total", 
+          `Title and abstract review` = sum(exclusion$`Title and abstract review`), 
+          `Full-text review` = sum(exclusion$`Full-text review`),
+          `Total` = sum(exclusion$Total)) %>%
+  kbl(booktabs = T, caption = "Number of papers excluded") %>%
+  kable_paper("striped") %>%
+  kable_styling(position = "center", latex_options = "HOLD_position")
+```
+
