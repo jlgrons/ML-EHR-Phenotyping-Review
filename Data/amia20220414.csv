@@ -1,0 +1,116 @@
+﻿PMID,Title,Authors,Journal/Book,Publication Year
+29854155,The Dependence of Machine Learning on Electronic Medical Record Quality,"Ho LV, Ledbetter D, Aczon M, Wetzel R.",AMIA Annu Symp Proc,2017
+29854217,A Semantic Parsing Method for Mapping Clinical Questions to Logical Forms,"Roberts K, Patra BG.",AMIA Annu Symp Proc,2017
+29854185,Representation of Social History Factors Across Age Groups: A Topic Analysis of Free-Text Social Documentation,"Lindemann EA, Chen ES, Wang Y, Skube SJ, Melton GB.",AMIA Annu Symp Proc,2017
+29854161,Framing Electronic Medical Records as Polylingual Documents in Query Expansion,"Huang EW, Wang S, Lee DJ, Zhang R, Liu B, Zhou X, Zhai C.",AMIA Annu Symp Proc,2017
+29854237,A Multi-Task Framework for Monitoring Health Conditions via Attention-based Recurrent Neural Networks,"Suo Q, Ma F, Canino G, Gao J, Zhang A, Veltri P, Agostino G.",AMIA Annu Symp Proc,2017
+29854154,Mining Electronic Health Records to Extract Patient-Centered Outcomes Following Prostate Cancer Treatment,"Hernandez-Boussard T, Kourdis PD, Seto T, Ferrari M, Blayney DW, Rubin D, Brooks JD.",AMIA Annu Symp Proc,2017
+29854220,Electronic Surveillance For Catheter-Associated Urinary Tract Infection Using Natural Language Processing,"Sanger PC, Granich M, Olsen-Scribner R, Jain R, Lober WB, Stapleton A, Pottinger PS.",AMIA Annu Symp Proc,2017
+29854116,Detecting Evidence of Intra-abdominal Surgical Site Infections from Radiology Reports Using Natural Language Processing,"Chapman AB, Mowery DL, Swords DS, Chapman WW, Bucher BT.",AMIA Annu Symp Proc,2017
+29854105,Intelligent Word Embeddings of Free-Text Radiology Reports,"Banerjee I, Madhavan S, Goldman RE, Rubin DL.",AMIA Annu Symp Proc,2017
+29854175,Leveraging existing corpora for de-identification of psychiatric notes using domain adaptation,"Lee HJ, Zhang Y, Roberts K, Xu H.",AMIA Annu Symp Proc,2017
+29854204,Evaluation of Semantic Web Technologies for Storing Computable Definitions of Electronic Health Records Phenotyping Algorithms,"Papež V, Denaxas S, Hemingway H.",AMIA Annu Symp Proc,2017
+29854186,Detecting Opioid-Related Aberrant Behavior using Natural Language Processing,"Lingeman JM, Wang P, Becker W, Yu H.",AMIA Annu Symp Proc,2017
+29854129,Detection of Suicidality in Adolescents with Autism Spectrum Disorders: Developing a Natural Language Processing Approach for Use in Electronic Health Records,"Downs J, Velupillai S, George G, Holden R, Kikoler M, Dean H, Fernandes A, Dutta R.",AMIA Annu Symp Proc,2017
+29854174,Exploiting Unlabeled Texts with Clustering-based Instance Selection for Medical Relation Classification,"Kim Y, Riloff E, Meystre SM.",AMIA Annu Symp Proc,2017
+29854225,Leveraging Collaborative Filtering to Accelerate Rare Disease Diagnosis,"Shen F, Liu S, Wang Y, Wang L, Afzal N, Liu H.",AMIA Annu Symp Proc,2017
+29854117,Deep Learning Solutions for Classifying Patients on Opioid Use,"Che Z, St Sauver J, Liu H, Liu Y.",AMIA Annu Symp Proc,2017
+29854264,Identifying Falls Risk Screenings Not Documented with Administrative Codes Using Natural Language Processing,"Zhu VJ, Walker TD, Warren RW, Jenny PB, Meystre S, Lenert LA.",AMIA Annu Symp Proc,2017
+29854260,Contralateral Breast Cancer Event Detection Using Nature Language Processing,"Zeng Z, Li X, Espino S, Roy A, Kitsch K, Clare S, Khan S, Luo Y.",AMIA Annu Symp Proc,2017
+29854121,Predicting Inpatient Acute Kidney Injury over Different Time Horizons: How Early and Accurate?,"Cheng P, Waitman LR, Hu Y, Liu M.",AMIA Annu Symp Proc,2017
+29854183,A hybrid Neural Network Model for Joint Prediction of Presence and Period Assertions of Medical Events in Clinical Notes,"Rumeng L, Abhyuday N J, Hong Y.",AMIA Annu Symp Proc,2017
+29854254,Learning Doctors' Medicine Prescription Pattern for Chronic Disease Treatment by Mining Electronic Health Records: A Multi-Task Learning Approach,"Xia E, Mei J, Xie G, Li X, Li Z, Xu M.",AMIA Annu Symp Proc,2017
+29854208,Challenges with Collecting Smoking Status in Electronic Health Records,"Polubriaginof F, Salmasian H, Albert DA, Vawdrey DK.",AMIA Annu Symp Proc,2017
+29854236,Causal Phenotyping for Susceptibility to Cardiotoxicity from Antineoplastic Breast Cancer Medications,"Sun D, Simon GJ, Skube S, Blaes AH, Melton GB, Zhang R.",AMIA Annu Symp Proc,2017
+29854110,"Exhaustively Characterizing a Patient Cohort by Prevalence of EMR Facts: a Generalized, Vendor-Agnostic Method for Quality Control and Research","Alex F B, Olin GP, Bos A, Tirado-Ramos A, Kittrell P, Jackson C.",AMIA Annu Symp Proc,2017
+29854246,Classifying Clinical Trial Eligibility Criteria to Facilitate Phased Cohort Identification Using Clinical Data Repositories,"Wang AY, Lancaster WJ, Wyatt MC, Rasmussen LV, Fort DG, Cimino JJ.",AMIA Annu Symp Proc,2017
+29854176,A Framework for Data Quality Assessment in Clinical Research Datasets,"Lee K, Weiskopf N, Pathak J.",AMIA Annu Symp Proc,2017
+29854124,Evaluation of a systematic methodology to detect in near real-time performance changes during electronic health record system implementations: a longitudinal study,"Colicchio TK, Fiol GD, Stoddard GJ, Narus SP.",AMIA Annu Symp Proc,2017
+29854255,Predicting Changes in Pediatric Medical Complexity using Large Longitudinal Health Records,"Xu Y, Bahadori MT, Searles E, Thompson M, Javier TS, Sun J.",AMIA Annu Symp Proc,2017
+30815052,Ascertaining Depression Severity by Extracting Patient Health Questionnaire-9 (PHQ-9) Scores from Clinical Notes,"Adekkanattu P, Sholle ET, DeFerio J, Pathak J, Johnson SB, Campion TR Jr.",AMIA Annu Symp Proc,2018
+30815053,A Computable Phenotype for Acute Respiratory Distress Syndrome Using Natural Language Processing and Machine Learning,"Afshar M, Joyce C, Oakey A, Formanek P, Yang P, Churpek MM, Cooper RS, Zelisko S, Price R, Dligach D.",AMIA Annu Symp Proc,2018
+30815058,Generalized Extraction and Classification of Span-Level Clinical Phrases,"Baldwin T, Guo Y, Mukherjee VV, Syeda-Mahmood T.",AMIA Annu Symp Proc,2018
+30815064,Enhancing the Representational Power of i2b2 through Referent Tracking,"Blaisure JC, Ceusters WM.",AMIA Annu Symp Proc,2018
+30815067,An Automated Feature Engineering for Digital Rectal Examination Documentation using Natural Language Processing,"Bozkurt S, Park JI, Kan KM, Ferrari M, Rubin DL, Brooks JD, Hernandez-Boussard T.",AMIA Annu Symp Proc,2018
+30815069,Applying Machine Learning to Linked Administrative and Clinical Data to Enhance the Detection of Homelessness among Vulnerable Veterans,"Brignone E, Fargo JD, Blais RK, Gundlapalli AV.",AMIA Annu Symp Proc,2018
+30815082,Towards the Inference of Social and Behavioral Determinants of Sexual Health: Development of a Gold-Standard Corpus with Semi-Supervised Learning,"Feller DJ, Zucker J, Don't Walk OB 4th, Srikishan B, Martinez R, Evans H, Yin MT, Gordon P, Elhadad N.",AMIA Annu Symp Proc,2018
+30815083,Application of Machine Learning Methods to Predict Non-Alcoholic Steatohepatitis (NASH) in Non-Alcoholic Fatty Liver (NAFL) Patients,"Fialoke S, Malarstig A, Miller MR, Dumitriu A.",AMIA Annu Symp Proc,2018
+30815091,Optimizing Corpus Creation for Training Word Embedding in Low Resource Domains: A Case Study in Autism Spectrum Disorder (ASD),"Gu Y, Leroy G, Pettygrove S, Galindo MK, Kurzius-Spencer M.",AMIA Annu Symp Proc,2018
+30815097,Phenotyping through Semi-Supervised Tensor Factorization (PSST),"Henderson J, He H, Malin BA, Denny JC, Kho AN, Ghosh J, Ho JC.",AMIA Annu Symp Proc,2018
+30815098,Standardizing Heterogeneous Annotation Corpora Using HL7 FHIR for Facilitating their Reuse and Integration in Clinical NLP,"Hong N, Wen A, Mojarad MR, Sohn S, Liu H, Jiang G.",AMIA Annu Symp Proc,2018
+30815101,Analyzing Real-World Use of Research Common Data Elements,"Huser V, Amos L.",AMIA Annu Symp Proc,2018
+30815108,Ensemble-based Methods to Improve De-identification of Electronic Health Record Narratives,"Kim Y, Heider P, Meystre S.",AMIA Annu Symp Proc,2018
+30815109,Using Machine Learning to Predict the Information Seeking Behavior of Clinicians Using an Electronic Medical Record System,"King AJ, Cooper GF, Hochheiser H, Clermont G, Hauskrecht M, Visweswaran S.",AMIA Annu Symp Proc,2018
+30815123,Computer-Assisted Diagnostic Coding: Effectiveness of an NLP-based approach using SNOMED CT to ICD-10 mappings,"Nguyen AN, Truran D, Kemp M, Koopman B, Conlan D, O'Dwyer J, Zhang M, Karimi S, Hassanzadeh H, Lawley MJ, Green D.",AMIA Annu Symp Proc,2018
+30815134,Multiple Factors Drive Opioid Prescribing at the Time of Discharge,"Pruinelli L, Ma S, Westra BL, Johnson SG, O'Conner Von S, Speedie SM.",AMIA Annu Symp Proc,2018
+30815140,Automatic Genetic Risk Assessment Calculation Using Breast Cancer Family History Data from the EHR compared to Self-Report,"Sin M, McGuinness JE, Trivedi MS, Vanegas A, Silverman TB, Crew KD, Kukafka R.",AMIA Annu Symp Proc,2018
+30815146,A Preliminary Study of Clinical Concept Detection Using Syntactic Relations,"Torii M, Yang EW, Doan S.",AMIA Annu Symp Proc,2018
+30815148,Disease Trajectories and End-of-Life Care for Dementias: Latent Topic Modeling and Trend Analysis Using Clinical Notes,"Wang L, Lakin J, Riley C, Korach Z, Frain LN, Zhou L.",AMIA Annu Symp Proc,2018
+30815152,A Comparison of Existing Methods to Detect Weight Data Errors in a Pediatric Academic Medical Center,"Wu DTY, Meganathan K, Newcomb M, Ni Y, Dexheimer JW, Kirkendall ES, Spooner SA.",AMIA Annu Symp Proc,2018
+30815160,Privacy-preserving biomedical data dissemination via a hybrid approach.,"Jiang, Yichen; Wang, Chenghong; Wu, Zhixuan; Du, Xin; Wang, Shuang",AMIA Annu Symp Proc,2018
+30815168,"Exploring Older Adults' Strengths, Problems, and Wellbeing Using De-identified Electronic Health Record Data","Gao G, Pieczkiewicz D, Kerr M, Lindquist R, Chi CL, Maganti S, Austin R, Kreitzer MJ, Todd K, Monsen KA.",AMIA Annu Symp Proc,2018
+30815175,Clinical Documentation in Electronic Health Record Systems: Analysis of Similarity in Progress Notes from Consecutive Outpatient Ophthalmology Encounters,"Huang AE, Hribar MR, Goldstein IH, Henriksen B, Lin WC, Chiang MF.",AMIA Annu Symp Proc,2018
+30815184,Using Neural Multi-task Learning to Extract Substance Abuse Information from Clinical Notes,"Lybarger K, Yetisgen M, Ostendorf M.",AMIA Annu Symp Proc,2018
+30815189,Assessing Information Congruence of Documented Cardiovascular Disease between Electronic Dental and Medical Records,"Patel J, Mowery D, Krishnan A, Thyvalikakath T.",AMIA Annu Symp Proc,2018
+30815195,Identifying Cases of Metastatic Prostate Cancer Using Machine Learning on Electronic Health Records,"Seneviratne MG, Banda JM, Brooks JD, Shah NH, Hernandez-Boussard TM.",AMIA Annu Symp Proc,2018
+30815198,A Frame-Based NLP System for Cancer-Related Information Extraction,"Si Y, Roberts K.",AMIA Annu Symp Proc,2018
+30815199,FABLE: A Semi-Supervised Prescription Information Extraction System,"Tao C, Filannino M, Uzuner √ñ.",AMIA Annu Symp Proc,2018
+30815201,Clinical text annotation - what factors are associated with the cost of time?,"Wei Q, Franklin A, Cohen T, Xu H.",AMIA Annu Symp Proc,2018
+30815205,Learning When Communications Between Healthcare Providers Indicate Hormonal Therapy Medication Discontinuation,"Yin Z, Warner JL, Malin BA.",AMIA Annu Symp Proc,2018
+30815206,Computable Eligibility Criteria through Ontology-driven Data Access: A Case Study of Hepatitis C Virus Trials,"Zhang H, He Z, He X, Guo Y, Nelson DR, Modave F, Wu Y, Hogan W, Prosperi M, Bian J.",AMIA Annu Symp Proc,2018
+32308812,"Evaluating the Portability of an NLP System for Processing Echocardiograms: A Retrospective, Multi-site Observational Study","Adekkanattu P, Jiang G, Luo Y, Kingsbury PR, Xu Z, Rasmussen LV, Pacheco JA, Kiefer RC, Stone DJ, Brandt PS, Yao L, Zhong Y, Deng Y, Wang F, Ancker JS, Campion TR, Pathak J.",AMIA Annu Symp Proc,2019
+32308815,Towards Reliable ARDS Clinical Decision Support: ARDS Patient Analytics with Free-text and Structured EMR Data,"Apostolova E, Uppal A, Galarraga JE, Koutroulis I, Tschampel T, Wang T, Velez T.",AMIA Annu Symp Proc,2019
+32308819,Determination of Marital Status of Patients from Structured and Unstructured Electronic Healthcare Data,"Bucher BT, Shi J, Pettit RJ, Ferraro J, Chapman WW, Gundlapalli A.",AMIA Annu Symp Proc,2019
+32308823,Engaging heart failure patients from a clinical data research network: A survey on willingness to participate in different types of research,"Choi YK, L√≥pez JE, Meeker D, Ohno-Machado L, Kim KK; pSCANNER Team.",AMIA Annu Symp Proc,2019
+32308824,Predicting Adverse Drug Reactions on Distributed Health Data using Federated Learning,"Choudhury O, Park Y, Salonidis T, Gkoulalas-Divanis A, Sylla I, Das AK.",AMIA Annu Symp Proc,2019
+32308832,Machine Learning Based Opioid Overdose Prediction Using Electronic Health Records,"Dong X, Rashidian S, Wang Y, Hajagos J, Zhao X, Rosenthal RN, Kong J, Saltz M, Saltz J, Wang F.",AMIA Annu Symp Proc,2019
+32308833,Longitudinal analysis of social and behavioral determinants of health in the EHR: exploring the impact of patient trajectories and documentation practices,"Feller DJ, Zucker J, Walk OBD, Yin MT, Gordon P, Elhadad N.",AMIA Annu Symp Proc,2019
+32308844,Machine Learned Mapping of Local EHR Flowsheet Data to Standard Information Models using Topic Model Filtering,"Johnson SG, Pruinelli L, Westra BL.",AMIA Annu Symp Proc,2019
+32308845,Regional Variations in Documentation of Sexual Trauma Concepts in Electronic Medical Records in the United States Veterans Health Administration,"Jones AL, Pettey WBP, Carter ME, Brignone E, Redd A, Suo Y, Divita G, Blais RK, Fargo JD, Gundlapalli AV.",AMIA Annu Symp Proc,2019
+32308851,Interpretation of machine learning predictions for patient outcomes in electronic health records,"Cava W, Bauer C, Moore JH, Pendergrass SA.",AMIA Annu Symp Proc,2019
+32308853,High Performance Computing on Flat FHIR Files Created with the New SMART/HL7 Bulk Data Access Standard,"Liu D, Sahu R, Ignatov V, Gottlieb D, Mandl KD.",AMIA Annu Symp Proc,2019
+32308854,Learning Hierarchical Representations of Electronic Health Records for Clinical Outcome Prediction.,"Liu, Luchen; Li, Haoran; Hu, Zhiting; Shi, Haoran; Wang, Zichang; Tang, Jian; Zhang, Ming",AMIA Annu Symp Proc,2019
+32308864,A principled framework for phenotyping postpartum hemorrhage across multiple levels of severity,"Oberhardt M, Friedman AM, Perotte R, Sheen JJ, Kessler A, Vawdrey DK, Green R, D'Alton ME, Goffman D.",AMIA Annu Symp Proc,2019
+32308871,Considerations for Improving the Portability of Electronic Health Record-Based Phenotype Algorithms,"Rasmussen LV, Brandt PS, Jiang G, Kiefer RC, Pacheco JA, Adekkanattu P, Ancker JS, Wang F, Xu Z, Pathak J, Luo Y.",AMIA Annu Symp Proc,2019
+32308875,Using Natural Language Processing to improve EHR Structured Data-based Surgical Site Infection Surveillance,"Shi J, Liu S, Pruitt LCC, Luppens CL, Ferraro JP, Gundlapalli AV, Chapman WW, Bucher BT.",AMIA Annu Symp Proc,2019
+32308885,Using Electronic Health Record Activity to Represent Interdisciplinary Care Teams and Examining their Contribution to Hospital Length of Stay,"Walpitage DL, Garcia A, Harper E, Sharma NK, Waitman LR.",AMIA Annu Symp Proc,2019
+32308886,Achievability to Extract Specific Date Information for Cancer Research,"Wang L, Wampfler J, Dispenzieri A, Xu H, Yang P, Liu H.",AMIA Annu Symp Proc,2019
+32308890,Identifying Cancer Patients at Risk for Heart Failure Using Machine Learning Methods,"Yang X, Gong Y, Waheed N, March K, Bian J, Hogan WR, Wu Y.",AMIA Annu Symp Proc,2019
+32308892,"Nurses' Stress Associated with Nursing Activities and Electronic Health Records: Data Triangulation from Continuous Stress Monitoring, Perceived Workload, and a Time Motion Study","Yen PY, Pearl N, Jethro C, Cooney E, McNeil B, Chen L, Lopetegui M, Maddox TM, Schallom M.",AMIA Annu Symp Proc,2019
+32308909,Predicting Wait Times in Pediatric Ophthalmology Outpatient Clinic Using Machine Learning,"Lin WC, Goldstein IH, Hribar MR, Sanders DS, Chiang MF.",AMIA Annu Symp Proc,2019
+32308918,Using FHIR to Construct a Corpus of Clinical Questions Annotated with Logical Forms and Answers,"Soni S, Gudala M, Wang DZ, Roberts K.",AMIA Annu Symp Proc,2019
+33936391,Contextual Embeddings from Clinical Notes Improves Prediction of Sepsis,"Amrollahi F, Shashikumar SP, Razmi F, Nemati S.",AMIA Annu Symp Proc,2020
+33936396,Deep Learning Approach to Parse Eligibility Criteria in Dietary Supplements Clinical Trials Following OMOP Common Data Model,"Bompelli A, Li J, Xu Y, Wang N, Wang Y, Adam T, He Z, Zhang R.",AMIA Annu Symp Proc,2020
+33936399,Selection of Clinical Text Features for Classifying Suicide Attempts,"Buckland RS, Hogan JW, Chen ES.",AMIA Annu Symp Proc,2020
+33936401,Application of Machine Learning to Predict Patient No-Shows in an Academic Pediatric Ophthalmology Clinic,"Chen J, Goldstein IH, Lin WC, Chiang MF, Hribar MR.",AMIA Annu Symp Proc,2020
+33936407,Privacy-Preserving Methods for Vertically Partitioned Incomplete Data,"Deng Y, Jiang X, Long Q.",AMIA Annu Symp Proc,2020
+33936410,Catch Me if You Can: Acute Events Hidden in Structured Chronic Disease Diagnosis Descriptions Show Detectable Recording Patterns in EHR,"Diaz-Garelli F, Lenoir KM, Wells BJ.",AMIA Annu Symp Proc,2020
+33936414,Extracting Angina Symptoms from Clinical Notes Using Pre-Trained Transformer Architectures,"Eisman AS, Shah NR, Eickhoff C, Zerveas G, Chen ES, Wu WC, Sarkar IN.",AMIA Annu Symp Proc,2020
+33936425,Developing and Validating a Computable Phenotype for the Identification of Transgender and Gender Nonconforming Individuals and Subgroups,"Guo Y, He X, Lyu T, Zhang H, Wu Y, Yang X, Chen Z, Markham MJ, Modave F, Xie M, Hogan W, Harle CA, Shenkman EA, Bian J.",AMIA Annu Symp Proc,2020
+33936427,Improving the Utility of Tobacco-Related Problem List Entries Using Natural Language Processing,"Harris DR, Henderson DW, Corbeau A.",AMIA Annu Symp Proc,2020
+33936438,Coding Free-Text Chief Complaints from a Health Information Exchange: A Preliminary Study,"Karagounis S, Sarkar IN, Chen ES.",AMIA Annu Symp Proc,2020
+33936439,Comparative Study of Various Approaches for Ensemble-based De-identification of Electronic Health Record Narratives,"Kim Y, Heider PM, Meystre SM.",AMIA Annu Symp Proc,2020
+33936451,Multi-task Learning via Adaptation to Similar Tasks for Mortality Prediction of Diverse Rare Diseases,"Liu L, Liu Z, Wu H, Wang Z, Shen J, Song Y, Zhang M.",AMIA Annu Symp Proc,2020
+33936461,Bleeding Entity Recognition in Electronic Health Records: A Comprehensive Analysis of End-to-End Systems,"Mitra A, Rawat BPS, McManus D, Kapoor A, Yu H.",AMIA Annu Symp Proc,2020
+33936481,User-Centered Design of a Machine Learning Intervention for Suicide Risk Prediction in a Military Setting,"Reale C, Novak LL, Robinson K, Simpson CL, Ribeiro JD, Franklin JC, Ripperger M, Walsh CG.",AMIA Annu Symp Proc,2020
+33936482,EffiCare: Better Prognostic Models via Resource-Efficient Health Embeddings,"Rethmeier N, Serbetci NO, M√∂ller S, Roller R.",AMIA Annu Symp Proc,2020
+33936484,Phenotype Concept Set Construction from Concept Pair Likelihoods,"Rodriguez VA, Tony S, Thangaraj P, Pang C, Kalluri KS, Jiang X, Ostropolets A, RuiJun C, Karthik N, Ryan P.",AMIA Annu Symp Proc,2020
+33936489,Natural Language Processing and Machine Learning to Enable Clinical Decision Support for Treatment of Pediatric Pneumonia,"Smith JC, Spann A, McCoy AB, Johnson JA, Arnold DH, Williams DJ, Weitkamp AO.",AMIA Annu Symp Proc,2020
+33936491,Patient Cohort Retrieval using Transformer Language Models,"Soni S, Roberts K.",AMIA Annu Symp Proc,2020
+33936501,AllergyMap: An Open Source Corpus of Allergy Mention Normalizations,"Wang AY, Osborne JD, Danila MI, Naidech AM, Liebovitz DM.",AMIA Annu Symp Proc,2020
+33936503,A Preliminary Characterization of Canonicalized and Non-Canonicalized Section Headers Across Variable Clinical Note Types,"Wang J, Yu S, Davoudi A, Mowery DL.",AMIA Annu Symp Proc,2020
+33936514,Statistical Impact of Sample Size and Imbalance on Multivariate Analysis in silico and A Case Study in the UK Biobank,"Zhang X, Li R, Ritchie MD.",AMIA Annu Symp Proc,2020
+35308901,The Addition of United States Census-Tract Data Does Not Improve the Prediction of Substance Misuse,"To D, Joyce C, Kulshrestha S, Sharma B, Dligach D, Churpek M, Afshar M.",AMIA Annu Symp Proc,2021
+35308903,Word Embedding and Clustering for Patient-Centered Redesign of Appointment Scheduling in Ambulatory Care Settings,"Mohammadi I, Mehrabi S, Sutton B, Wu H.",AMIA Annu Symp Proc,2021
+35308914,Machine Learning Predictability of Clinical Next Generation Sequencing for Hematologic Malignancies to Guide High-Value Precision Medicine,"Kim GYE, Noshad M, Stehr H, Rojansky R, Gratzinger D, Oak J, Brar R, Iberri D, Kong C, Zehnder J, Chen JH.",AMIA Annu Symp Proc,2021
+35308921,Validation of Administrative Coding and Clinical Notes for Hospital-Acquired Acute Kidney Injury in Adults,"Zhang J, Drawz PE, Zhu Y, Hultman G, Simon G, Melton GB.",AMIA Annu Symp Proc,2021
+35308927,Reducing Physicians' Cognitive Load During Chart Review: A Problem-Oriented Summary of the Patient Electronic Record,"Liang JJ, Tsou CH, Dandala B, Poddar A, Joopudi V, Mahajan D, Prager J, Raghavan P, Payne M.",AMIA Annu Symp Proc,2021
+35308936,Mapping the Read2/CTV3 controlled clinical terminologies to Phecodes in UK Biobank primary care electronic health records: implementation and evaluation,"Denaxas S, Liu G, Feng Q, Fatemifar G, Bastarache L, Kerchberger EV, Hingorani AD, Lumbers T, Peterson JF, Wei WQ, Hemingway H.",AMIA Annu Symp Proc,2021
+35308943,Extraction of Active Medications and Adherence Using Natural Language Processing for Glaucoma Patients,"Lin WC, Chen JS, Kaluzny J, Chen A, Chiang MF, Hribar MR.",AMIA Annu Symp Proc,2021
+35308970,Understanding Heart Failure Patients EHR Clinical Features via SHAP Interpretation of Tree-Based Machine Learning Model Predictions,"Lu S, Chen R, Wei W, Belovsky M, Lu X.",AMIA Annu Symp Proc,2021
+35308976,Towards more patient friendly clinical notes through language models and ontologies,"Moramarco F, Juric D, Savkov A, Flann J, Lehl M, Boda K, Grafen T, Zhelezniak V, Gohil S, Korfiatis AP, Hammerla N.",AMIA Annu Symp Proc,2021
+35308986,Chart Completion Time of Attending Physicians While Using Medical Scribes,"Florig ST, Corby S, Rosson NT, Devara T, Weiskopf NG, Gold JA, Mohan V.",AMIA Annu Symp Proc,2021
+35308998,Automated Mapping of Real-world Oncology Laboratory Data to LOINC,"Kelly J, Wang C, Zhang J, Das S, Ren A, Warnekar P.",AMIA Annu Symp Proc,2021
+35309010,Comparing Scribed and Non-scribed Outpatient Progress Notes,"Rule A, Florig ST, Bedrick S, Mohan V, Gold JA, Hribar MR.",AMIA Annu Symp Proc,2021
+35309012,A Machine Learning Pipeline for Accurate COVID-19 Health Outcome Prediction using Longitudinal Electronic Health Records,Feng A.,AMIA Annu Symp Proc,2021
+35309014,A Study of Social and Behavioral Determinants of Health in Lung Cancer Patients Using Transformers-based Natural Language Processing Models,"Yu Z, Yang X, Dang C, Wu S, Adekkanattu P, Pathak J, George TJ, Hogan WR, Guo Y, Bian J, Wu Y.",AMIA Annu Symp Proc,2021
