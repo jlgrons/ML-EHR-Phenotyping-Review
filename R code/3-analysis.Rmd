@@ -181,7 +181,7 @@ print(paste("The articles considered",
              length(unique(pheno_unnested$Phenotype_unnested)), "phenotypes"))
 
 # Articles with more than 1 phenotype
-print(paste(sum(df$Total_number_of_phenos > 1, na.rm = TRUE),
+print(paste(sum(df$Total_number_of_phenos > 1),
              "articles considered more than 1 phenotype"))
 
 # Articles that considered the various kinds of phenotypes
@@ -409,7 +409,7 @@ print(paste(nrow(df %>% filter(Openly_available_data == 0)),
 print(paste("Among these", nrow(df %>% filter(Openly_available_data == 0)),
             "articles,",
   nrow(df %>% filter(Openly_available_data == 0 & Reported_demographics == 1)),
-             "articles considered temporal phenotypes"))
+             "reported demographics"))
 ```
 
 
