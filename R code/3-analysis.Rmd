@@ -1,7 +1,7 @@
 ---
 title: "Analysis of selected articles"
 author: " "
-date: "Last Updated: 10/19/2022"
+date: "Last Updated: 11/17/2022"
 output: 
   pdf_document:
     toc: true
@@ -37,7 +37,7 @@ source('analysis_functions.R')
 
 ```{r, eval = T}
 # Read in annotation file and include selected articles
-df <- read.csv("../Data/article_charting_101722_with_citations.csv")
+df <- read.csv("../Data/article_charting_with_citations.csv")
 
 # Create variable indicating use of unstructured data
 df$Unstructured <- (df$Unstructured_data_type != "")
@@ -181,7 +181,7 @@ print(paste("The articles considered",
              length(unique(pheno_unnested$Phenotype_unnested)), "phenotypes"))
 
 # Articles with more than 1 phenotype
-print(paste(sum(df$Total_number_of_phenos > 1),
+print(paste(sum(df$Total_number_of_phenos > 1, na.rm = TRUE),
              "articles considered more than 1 phenotype"))
 
 # Articles that considered the various kinds of phenotypes
@@ -409,7 +409,7 @@ print(paste(nrow(df %>% filter(Openly_available_data == 0)),
 print(paste("Among these", nrow(df %>% filter(Openly_available_data == 0)),
             "articles,",
   nrow(df %>% filter(Openly_available_data == 0 & Reported_demographics == 1)),
-             "reported demographics"))
+             "articles considered temporal phenotypes"))
 ```
 
 
@@ -479,7 +479,6 @@ plot_validation_metrics(deep_supervised,
 ```
 \clearpage
 
-# Model performance metric reporting
 
 ```{r}
 method_unnested <- unnest_string_var(df %>% 

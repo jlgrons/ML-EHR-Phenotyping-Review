@@ -1,7 +1,7 @@
 ---
 title: "Article exclusion"
 author: " "
-date: "Last Updated: 10/19/2022"
+date: "Last Updated: 11/17/2022"
 output: pdf_document
 knit: (function(inputFile, encoding) {
       out_dir <- "../Reports";
@@ -21,7 +21,7 @@ library(kableExtra)
 ```
 
 ```{r}
-df <- read.csv("../Data/annotations050822.csv", skip = 1)
+df <- read.csv("../Data/article_charting.csv", skip = 1)
 df <- df %>% filter(PMID != "") # Remove empty row.
 ```
 
@@ -41,7 +41,7 @@ init %>%
   kable_styling(position = "center", latex_options = "HOLD_position")
 ```
 
-We annotated articles in the `annotations050822.csv` file. The analysis consists of 2 steps:
+We annotated articles in the `article_charting.csv` file. The analysis consists of 2 steps:
 
 - **Title and abstract screening**: Exclude the papers that were reviews/perspectives/editorials, did not use EHR data as the primary data source, did not consider phenotyping, and/or did not use machine learning (ML). 
 - **Full-text review**: For articles that passed the title and abstract screening, either (i) exclude the article as it meets the exclusion criteria listed above or (ii) include the article and annotate relevant data.
